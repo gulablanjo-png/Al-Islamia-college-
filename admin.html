@@ -1,616 +1,104 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Admin Panel - Al Islamia College</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js"></script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7f5;
-      color: #183028;
-    }
-
-    header {
-      background: #075e3b;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .container {
-      width: 95%;
-      max-width: 1200px;
-      margin: 25px auto;
-    }
-
-    .card {
-      background: white;
-      padding: 22px;
-      border-radius: 12px;
-      box-shadow: 0 3px 15px #0001;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      color: #075e3b;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin: 12px 0 6px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccd8d2;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      border: none;
-      border-radius: 7px;
-      padding: 10px 15px;
-      margin: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .login-btn,
-    .refresh {
-      background: #075e3b;
-      color: white;
-    }
-
-    .approve {
-      background: #16834c;
-      color: white;
-    }
-
-    .reject {
-      background: #c62828;
-      color: white;
-    }
-
-    .delete {
-      background: #555;
-      color: white;
-    }
-
-    .print {
-      background: #555;
-      color: white;
-    }
-
-    .logout {
-      background: #222;
-      color: white;
-    }
-
-    .message {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    .error {
-      color: #b42318;
-    }
-
-    .success {
-      color: #08753f;
-    }
-
-    #dashboard {
-      display: none;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 900px;
-    }
-
-    th,
-    td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: right;
-      vertical-align: top;
-    }
-
-    th {
-      background: #e7f3ed;
-      color: #075e3b;
-    }
-
-    .status {
-      font-weight: bold;
-    }
-
-    .submitted {
-      color: #996c00;
-    }
-
-    .approved {
-      color: #08753f;
-    }
-
-    .rejected {
-      color: #b42318;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .search {
-      max-width: 450px;
-    }
-
-    @media print {
-      body * {
-        visibility: hidden;
-      }
-
-      #printArea,
-      #printArea * {
-        visibility: visible;
-      }
-
-      #printArea {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel | Al Islamia Oriental Degree College</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f8f6;color:#17342b;font-family:Arial,"Noto Nastaliq Urdu",sans-serif}.top{background:linear-gradient(135deg,#064e3b,#0b6b4f,#b08a2e);color:#fff;padding:22px;text-align:center}.wrap{width:94%;max-width:1100px;margin:20px auto}.card{background:#fff;border-radius:14px;padding:20px;margin:16px 0;box-shadow:0 3px 15px #0001}h2{color:#075e3b;margin-top:0;border-bottom:2px solid #e4eee9;padding-bottom:9px}input,textarea{width:100%;padding:12px;border:1px solid #ccd8d2;border-radius:8px;font-size:16px;font-family:inherit}textarea{min-height:120px;resize:vertical}label{display:block;font-weight:bold;margin:12px 0 6px}button{border:0;border-radius:8px;padding:10px 16px;background:#075e3b;color:#fff;font-weight:bold;cursor:pointer;margin:5px}button.danger{background:#b42318}button.gold{background:#a87900}button.gray{background:#52615b}.hidden{display:none}.msg{padding:10px;border-radius:8px;margin:10px 0}.ok{background:#e7f6ec;color:#08753f}.err{background:#fdeceb;color:#b42318}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:180px}.item{border:1px solid #dfe8e3;border-radius:10px;padding:14px;margin:10px 0}.muted{color:#64756e;font-size:14px}.login{max-width:450px;margin:60px auto}.app-grid{overflow:auto}.app{border:1px solid #dfe8e3;border-radius:10px;padding:14px;margin:10px 0}.badge{display:inline-block;padding:4px 8px;border-radius:20px;background:#e7f6ec;color:#075e3b;font-weight:bold}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.nav button{background:#eaf6f0;color:#075e3b}.nav button.active{background:#075e3b;color:#fff}
+</style>
 </head>
-
 <body>
-
-<header>
-  <h1>Al Islamia Oriental Degree College</h1>
-  <p>Admin Panel — Kaloi, Tharparker</p>
-</header>
-
-<div class="container">
-
-  <!-- LOGIN -->
-  <div id="loginBox" class="card">
-
+<div class="top"><h1>Al Islamia Oriental Degree College</h1><p>Admin Panel — Kaloi, Tharparker</p></div>
+<div class="wrap">
+  <section id="loginCard" class="card login">
     <h2>Admin Login</h2>
+    <label>Username</label><input id="username" autocomplete="username" placeholder="Admin username">
+    <label>Password</label><input id="password" type="password" autocomplete="current-password" placeholder="Password">
+    <button onclick="login()">Login</button><div id="loginMsg"></div>
+  </section>
 
-    <label>Admin Email</label>
-    <input
-      type="email"
-      id="email"
-      placeholder="اپنا Admin Email لکھیں"
-    >
-
-    <label>Password</label>
-    <input
-      type="password"
-      id="password"
-      placeholder="اپنا Password لکھیں"
-    >
-
-    <button class="login-btn" onclick="login()">
-      Login
-    </button>
-
-    <div id="loginMessage" class="message"></div>
-
-  </div>
-
-
-  <!-- DASHBOARD -->
-  <div id="dashboard">
-
+  <section id="panel" class="hidden">
     <div class="card">
-
-      <div class="topbar">
-
-        <div>
-          <h2>داخلہ درخواستیں</h2>
-          <p id="totalCount">کل درخواستیں: 0</p>
-        </div>
-
-        <div>
-          <button class="refresh" onclick="loadApplications()">
-            Refresh
-          </button>
-
-          <button class="print" onclick="window.print()">
-            Print
-          </button>
-
-          <button class="logout" onclick="logout()">
-            Logout
-          </button>
-        </div>
-
-      </div>
-
-      <input
-        class="search"
-        type="text"
-        id="searchBox"
-        placeholder="نام، فون، Application Number یا پروگرام تلاش کریں"
-        oninput="filterApplications()"
-      >
-
+      <div class="row" style="align-items:center"><div><strong>Admin Panel</strong><div class="muted" id="who"></div></div><div style="text-align:left"><button class="gray" onclick="logout()">Logout</button></div></div>
+    </div>
+    <div class="nav">
+      <button id="tabContent" class="active" onclick="showTab('content')">Website Content</button>
+      <button id="tabNotifications" onclick="showTab('notifications')">Notifications</button>
+      <button id="tabApplications" onclick="showTab('applications')">Applications</button>
     </div>
 
+    <section id="contentTab" class="card">
+      <h2>Website Content Control</h2>
+      <p class="muted">یہاں سے Home کے Mission، Founder’s Message اور Principal’s Message تبدیل کریں۔</p>
+      <div id="contentEditors"></div>
+      <button onclick="saveContent()">Save Website Content</button><div id="contentMsg"></div>
+    </section>
 
-    <div id="printArea" class="card">
+    <section id="notificationsTab" class="card hidden">
+      <h2>Notifications Control</h2>
+      <label>Notification Title</label><input id="noticeTitle" placeholder="مثلاً Admission Open">
+      <label>Notification Message</label><textarea id="noticeMessage" placeholder="اپنی اطلاع لکھیں"></textarea>
+      <label><input id="noticePublished" type="checkbox" checked style="width:auto"> Publish on website</label>
+      <button onclick="addNotification()">Add Notification</button><div id="noticeMsg"></div>
+      <hr>
+      <div id="noticeList"></div>
+    </section>
 
-      <div class="table-wrap">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>Application No.</th>
-              <th>نام</th>
-              <th>والد کا نام</th>
-              <th>فون</th>
-              <th>پروگرام</th>
-              <th>پتہ</th>
-              <th>تاریخ</th>
-              <th>اسٹیٹس</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody id="applicationsBody">
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-  </div>
-
+    <section id="applicationsTab" class="card hidden">
+      <h2>Applications</h2>
+      <div class="row"><input id="search" placeholder="Search by name, application number or phone" oninput="renderApplications()"><button onclick="loadApplications()">Refresh</button><button class="gold" onclick="exportCSV()">Export CSV</button></div>
+      <div id="appList"></div>
+    </section>
+  </section>
 </div>
-
-
 <script>
-
-  const db = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-
-  let applications = [];
-
-
-  // LOGIN
-  async function login() {
-
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-
-    const message = document.getElementById("loginMessage");
-
-    message.innerHTML = "";
-
-    if (!email || !password) {
-      message.innerHTML =
-        '<p class="error">Email اور Password درج کریں۔</p>';
-      return;
-    }
-
-    const { data, error } =
-      await db.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
-
-    if (error) {
-
-      console.error(error);
-
-      message.innerHTML =
-        '<p class="error">Login ناکام۔ Email یا Password چیک کریں۔</p>';
-
-      return;
-    }
-
-    document.getElementById("loginBox").style.display = "none";
-    document.getElementById("dashboard").style.display = "block";
-
-    await loadApplications();
-  }
-
-
-  // CHECK EXISTING LOGIN
-  async function checkSession() {
-
-    const { data } = await db.auth.getSession();
-
-    if (data.session) {
-
-      document.getElementById("loginBox").style.display = "none";
-      document.getElementById("dashboard").style.display = "block";
-
-      await loadApplications();
-    }
-  }
-
-
-  // LOAD APPLICATIONS
-  async function loadApplications() {
-
-    const body =
-      document.getElementById("applicationsBody");
-
-    body.innerHTML =
-      '<tr><td colspan="9">درخواستیں لوڈ ہو رہی ہیں...</td></tr>';
-
-    const { data, error } = await db
-      .from("applications")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) {
-
-      console.error(error);
-
-      body.innerHTML =
-        '<tr><td colspan="9" class="error">درخواستیں لوڈ نہیں ہو سکیں۔</td></tr>';
-
-      return;
-    }
-
-    applications = data || [];
-
-    renderApplications(applications);
-  }
-
-
-  // DISPLAY APPLICATIONS
-  function renderApplications(list) {
-
-    const body =
-      document.getElementById("applicationsBody");
-
-    document.getElementById("totalCount").textContent =
-      "کل درخواستیں: " + list.length;
-
-    if (list.length === 0) {
-
-      body.innerHTML =
-        '<tr><td colspan="9">کوئی درخواست موجود نہیں۔</td></tr>';
-
-      return;
-    }
-
-    body.innerHTML = list.map(app => {
-
-      const statusClass =
-        app.status === "Approved"
-          ? "approved"
-          : app.status === "Rejected"
-          ? "rejected"
-          : "submitted";
-
-      return `
-        <tr>
-
-          <td>
-            <strong>${escapeHtml(app.app_no)}</strong>
-          </td>
-
-          <td>
-            ${escapeHtml(app.name)}
-          </td>
-
-          <td>
-            ${escapeHtml(app.father)}
-          </td>
-
-          <td>
-            ${escapeHtml(app.phone)}
-          </td>
-
-          <td>
-            ${escapeHtml(app.program)}
-          </td>
-
-          <td>
-            ${escapeHtml(app.address || "")}
-          </td>
-
-          <td>
-            ${formatDate(app.created_at)}
-          </td>
-
-          <td class="status ${statusClass}">
-            ${escapeHtml(app.status)}
-          </td>
-
-          <td>
-
-            <button
-              class="approve"
-              onclick="changeStatus('${app.id}', 'Approved')">
-              Approve
-            </button>
-
-            <button
-              class="reject"
-              onclick="changeStatus('${app.id}', 'Rejected')">
-              Reject
-            </button>
-
-            <button
-              class="delete"
-              onclick="deleteApplication('${app.id}')">
-              Delete
-            </button>
-
-          </td>
-
-        </tr>
-      `;
-
-    }).join("");
-  }
-
-
-  // CHANGE STATUS
-  async function changeStatus(id, status) {
-
-    const text =
-      status === "Approved"
-        ? "کیا آپ اس درخواست کو Approve کرنا چاہتے ہیں؟"
-        : "کیا آپ اس درخواست کو Reject کرنا چاہتے ہیں؟";
-
-    if (!confirm(text)) {
-      return;
-    }
-
-    const { error } = await db
-      .from("applications")
-      .update({
-        status: status
-      })
-      .eq("id", id);
-
-    if (error) {
-
-      alert("Status تبدیل نہیں ہو سکا۔");
-      console.error(error);
-      return;
-    }
-
-    await loadApplications();
-  }
-
-
-  // DELETE
-  async function deleteApplication(id) {
-
-    if (!confirm("کیا آپ واقعی یہ درخواست Delete کرنا چاہتے ہیں؟")) {
-      return;
-    }
-
-    const { error } = await db
-      .from("applications")
-      .delete()
-      .eq("id", id);
-
-    if (error) {
-
-      alert("درخواست Delete نہیں ہو سکی۔");
-      console.error(error);
-      return;
-    }
-
-    await loadApplications();
-  }
-
-
-  // SEARCH
-  function filterApplications() {
-
-    const query =
-      document.getElementById("searchBox")
-        .value
-        .trim()
-        .toLowerCase();
-
-    if (!query) {
-
-      renderApplications(applications);
-      return;
-    }
-
-    const filtered =
-      applications.filter(app => {
-
-        return (
-          String(app.app_no || "").toLowerCase().includes(query) ||
-          String(app.name || "").toLowerCase().includes(query) ||
-          String(app.father || "").toLowerCase().includes(query) ||
-          String(app.phone || "").toLowerCase().includes(query) ||
-          String(app.program || "").toLowerCase().includes(query)
-        );
-
-      });
-
-    renderApplications(filtered);
-  }
-
-
-  // LOGOUT
-  async function logout() {
-
-    await db.auth.signOut();
-
-    document.getElementById("dashboard").style.display = "none";
-    document.getElementById("loginBox").style.display = "block";
-
-    document.getElementById("password").value = "";
-  }
-
-
-  // DATE
-  function formatDate(value) {
-
-    if (!value) return "";
-
-    try {
-      return new Date(value).toLocaleDateString("en-GB");
-    } catch {
-      return value;
-    }
-  }
-
-
-  // HTML ESCAPE
-  function escapeHtml(value) {
-
-    if (value === null || value === undefined) {
-      return "";
-    }
-
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-
-  checkSession();
-
+const db = supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+let applications=[];
+const contentKeys=[['mission','Our Mission'],['founder_message','Founder’s Message'],['principal_message','Principal’s Message']];
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
+async function login(){
+  const u=document.getElementById('username').value.trim(),p=document.getElementById('password').value;
+  const m=document.getElementById('loginMsg');m.innerHTML='';
+  if(!u||!p){m.innerHTML='<div class="msg err">Username اور password درج کریں۔</div>';return}
+  const {data,error}=await db.auth.signInWithPassword({email:u,password:p});
+  if(error){m.innerHTML='<div class="msg err">Login ناکام: '+esc(error.message)+'</div>';return}
+  await startPanel(data.user);
+}
+async function startPanel(user){
+  document.getElementById('loginCard').classList.add('hidden');document.getElementById('panel').classList.remove('hidden');document.getElementById('who').textContent=user?.email||'';
+  await Promise.all([loadContent(),loadNotifications(),loadApplications()]);
+}
+async function logout(){await db.auth.signOut();location.reload()}
+function showTab(t){['content','notifications','applications'].forEach(x=>{document.getElementById(x+'Tab').classList.toggle('hidden',x!==t);document.getElementById('tab'+x.charAt(0).toUpperCase()+x.slice(1)).classList.toggle('active',x===t)})}
+async function loadContent(){
+ const {data,error}=await db.from('site_content').select('key,title,content').in('key',contentKeys.map(x=>x[0]));
+ if(error){document.getElementById('contentEditors').innerHTML='<div class="msg err">Content load error: '+esc(error.message)+'</div>';return}
+ const map=Object.fromEntries((data||[]).map(x=>[x.key,x]));
+ document.getElementById('contentEditors').innerHTML=contentKeys.map(([k,t])=>`<div class="item"><label>${esc(t)}</label><textarea id="content_${k}">${esc(map[k]?.content||'')}</textarea></div>`).join('');
+}
+async function saveContent(){
+ const rows=contentKeys.map(([k,t])=>({key:k,title:t,content:document.getElementById('content_'+k).value.trim(),updated_at:new Date().toISOString()}));
+ const {error}=await db.from('site_content').upsert(rows,{onConflict:'key'});const m=document.getElementById('contentMsg');m.innerHTML=error?'<div class="msg err">Save failed: '+esc(error.message)+'</div>':'<div class="msg ok">Website content saved successfully.</div>';
+}
+async function loadNotifications(){
+ const {data,error}=await db.from('notifications').select('*').order('created_at',{ascending:false});
+ const box=document.getElementById('noticeList');if(error){box.innerHTML='<div class="msg err">'+esc(error.message)+'</div>';return}window.notifications=data||[];
+ box.innerHTML=window.notifications.length?window.notifications.map(n=>`<div class="item"><strong>${esc(n.title)}</strong> <span class="badge">${n.is_published?'Published':'Hidden'}</span><p>${esc(n.message)}</p><div class="muted">${new Date(n.created_at).toLocaleString()}</div><button onclick="editNotification(${n.id})">Edit</button><button class="gold" onclick="toggleNotification(${n.id},${!n.is_published})">${n.is_published?'Hide':'Publish'}</button><button class="danger" onclick="deleteNotification(${n.id})">Delete</button></div>`).join(''):'<p class="muted">No notifications yet.</p>';
+}
+async function addNotification(){const title=document.getElementById('noticeTitle').value.trim(),message=document.getElementById('noticeMessage').value.trim(),published=document.getElementById('noticePublished').checked;if(!title||!message){document.getElementById('noticeMsg').innerHTML='<div class="msg err">Title اور message دونوں لکھیں۔</div>';return}const {error}=await db.from('notifications').insert({title,message,is_published:published});document.getElementById('noticeMsg').innerHTML=error?'<div class="msg err">'+esc(error.message)+'</div>':'<div class="msg ok">Notification added.</div>';if(!error){document.getElementById('noticeTitle').value='';document.getElementById('noticeMessage').value='';await loadNotifications()}}
+async function editNotification(id){const n=(window.notifications||[]).find(x=>x.id===id);if(!n)return;const title=prompt('Notification title:',n.title);if(title===null)return;const message=prompt('Notification message:',n.message);if(message===null)return;const {error}=await db.from('notifications').update({title:title.trim(),message:message.trim()}).eq('id',id);if(error)alert(error.message);else await loadNotifications()}
+async function toggleNotification(id,publish){const {error}=await db.from('notifications').update({is_published:publish}).eq('id',id);if(error)alert(error.message);else await loadNotifications()}
+async function deleteNotification(id){if(!confirm('Delete this notification?'))return;const {error}=await db.from('notifications').delete().eq('id',id);if(error)alert(error.message);else await loadNotifications()}
+async function loadApplications(){const {data,error}=await db.from('applications').select('*').order('created_at',{ascending:false});if(error){document.getElementById('appList').innerHTML='<div class="msg err">'+esc(error.message)+'</div>';return}applications=data||[];renderApplications()}
+function renderApplications(){const q=(document.getElementById('search')?.value||'').toLowerCase();const list=applications.filter(a=>[a.app_no,a.name,a.phone,a.program].some(v=>String(v||'').toLowerCase().includes(q)));document.getElementById('appList').innerHTML=list.length?list.map(a=>`<div class="app"><strong>${esc(a.app_no)}</strong> — ${esc(a.name)} <span class="badge">${esc(a.status)}</span><p>Father: ${esc(a.father)}<br>Phone: ${esc(a.phone)}<br>Program: ${esc(a.program)}<br>Address: ${esc(a.address)}</p><button onclick="updateStatus('${esc(a.app_no)}','Approved')">Approve</button><button class="gold" onclick="updateStatus('${esc(a.app_no)}','Rejected')">Reject</button><button class="danger" onclick="deleteApplication('${esc(a.app_no)}')">Delete</button><button class="gray" onclick="printApplication('${esc(a.app_no)}')">Print</button></div>`).join(''):'<p class="muted">No applications found.</p>'}
+async function updateStatus(appNo,status){const {error}=await db.from('applications').update({status}).eq('app_no',appNo);if(error)alert(error.message);else await loadApplications()}
+async function deleteApplication(appNo){if(!confirm('Delete this application?'))return;const {error}=await db.from('applications').delete().eq('app_no',appNo);if(error)alert(error.message);else await loadApplications()}
+function printApplication(appNo){const a=applications.find(x=>x.app_no===appNo);if(!a)return;const w=window.open('','_blank');w.document.write(`<html><head><title>${esc(a.app_no)}</title></head><body dir="rtl"><h2>Al Islamia Oriental Degree College Kaloi</h2><p>Application Number: ${esc(a.app_no)}</p><p>نام: ${esc(a.name)}</p><p>والد: ${esc(a.father)}</p><p>فون: ${esc(a.phone)}</p><p>پروگرام: ${esc(a.program)}</p><p>پتہ: ${esc(a.address)}</p><p>اسٹیٹس: ${esc(a.status)}</p><script>window.print()<\/script></body></html>`);w.document.close()}
+function exportCSV(){const rows=applications;const head=['Application Number','Name','Father','Phone','Program','Status','Address'];const csv=[head,...rows.map(a=>[a.app_no,a.name,a.father,a.phone,a.program,a.status,a.address])].map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='applications.csv';a.click();URL.revokeObjectURL(a.href)}
+(async()=>{const {data}=await db.auth.getSession();if(data.session)await startPanel(data.session.user)})();
 </script>
-
-</body>
-</html>
+</body></html>
+  
