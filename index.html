@@ -3,15 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Al Islamia Oriental Degree College Kaloi | Online Admission</title>
-
-  <meta name="description" content="Al Islamia Oriental Degree College Kaloi, Tharparker — Online admissions for Matric, Inter, Molvi Arabic, Molvi Alam Arabic and Molvi Fazil Arabic.">
-
-  <meta name="keywords" content="Al Islamia Oriental Degree College Kaloi, Al Islamia College Kaloi, Degree College Kaloi, College in Kaloi Tharparker, Online Admission Kaloi, Tharparker College">
-
-  <link rel="canonical" href="https://alislamiaorentalcollegekaloi.netlify.app/">
-
+<meta name="description" content="Al Islamia Oriental Degree College Kaloi, Tharparker — Online admissions for Matric, Inter, Molvi Arabic, Molvi Alam Arabic and Molvi Fazil Arabic.">
+<meta name="keywords" content="Al Islamia Oriental Degree College Kaloi, Al Islamia College Kaloi, Degree College Kaloi, College in Kaloi Tharparker, Online Admission Kaloi, Tharparker College">
+<link rel="canonical" href="https://alislamiaorentalcollegekaloi.netlify.app/">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
 
@@ -23,12 +18,12 @@
     body {
       margin: 0;
       font-family: Arial, "Noto Nastaliq Urdu", sans-serif;
-      background: #f4f7f5;
+      background: #f7faf8;
       color: #183028;
     }
 
     header {
-      background: linear-gradient(135deg, #075e3b, #0b8153);
+      background: linear-gradient(135deg, #064e3b, #0b6b4f, #b08a2e);
       color: white;
       text-align: center;
       padding: 35px 15px;
@@ -54,14 +49,21 @@
       font-size: 17px;
     }
 
-    nav {
-      background: white;
-      padding: 12px;
-      text-align: center;
-      box-shadow: 0 2px 8px #0002;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    nav { background: white; padding: 12px; text-align: center; box-shadow: 0 2px 8px #0002; border-bottom: 3px solid #c9a227; position: sticky; top: 0; z-index: 9999; }
+
+    .menu-toggle { display: none; position: absolute; left: 14px; top: 7px; width: 50px; height: 44px; border: 2px solid #c9a227; border-radius: 9px; background: #064e3b; color: white; font-size: 30px; line-height: 38px; cursor: pointer; z-index: 10001; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    /* Keep inner pages hidden until selected from the main menu. */
+    .site-page { display: none; }
+    .site-page.active-page { display: block; }
+
+    .nav-links { display: block; }
+
+    @media (max-width: 700px) {
+      nav { min-height: 58px; padding: 8px 10px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; left: 10px; right: 10px; top: 58px; padding: 8px; background: white; border: 1px solid #c9a227; border-radius: 0 0 12px 12px; box-shadow: 0 8px 18px #0002; z-index: 10000; }
+      .nav-links.open { display: block; }
+      nav a { display: block; margin: 6px 0; padding: 11px 12px; background: #f7faf8; border-color: #e4f3ec; }
     }
 
     nav a {
@@ -71,12 +73,26 @@
       color: #075e3b;
       text-decoration: none;
       font-weight: bold;
+      border: 1px solid transparent;
       border-radius: 8px;
     }
 
     nav a:hover {
       background: #e4f3ec;
+      border-color: #c9a227;
     }
+
+    .ltr-heading,
+    .ltr-text {
+      direction: ltr;
+      unicode-bidi: isolate;
+      text-align: left;
+    }
+
+    .ltr-heading {
+      color: #075e3b;
+    }
+
 
     .container {
       width: 94%;
@@ -124,6 +140,16 @@
 
     section {
       scroll-margin-top: 80px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .section {
+      margin: 25px 0;
     }
 
     .card {
@@ -249,41 +275,54 @@
 
   <h1>Al Islamia Oriental Degree College</h1>
   <h1>Kaloi, Tharparker</h1>
-
   <p>آن لائن داخلہ پورٹل</p>
   <p>📞 0348-0824476</p>
 </header>
 
 <nav>
-  <a href="#home">ہوم</a>
-  <a href="#programs">پروگرامز</a>
-  <a href="#admission">آن لائن داخلہ</a>
-  <a href="#status">داخلہ اسٹیٹس</a>
-  <a href="#contact">رابطہ</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="#home" dir="ltr">Home</a>
+    <a href="#programs" dir="ltr">Programs</a>
+    <a href="#admission" dir="ltr">Online Admission</a>
+    <a href="#status" dir="ltr">Admission Status</a>
+    <a href="#notifications" dir="ltr">Notifications</a>
+    <a href="#about" dir="ltr">About College</a>
+    <a href="#contact" dir="ltr">Contact</a>
+  </div>
 </nav>
 
 <div class="container">
 
-  <!-- HOME -->
-  <section id="home" class="hero">
-    <h2>Al Islamia Oriental Degree College میں خوش آمدید</h2>
-
-    <p>
-      طلبہ و طالبات اب گھر بیٹھے آن لائن داخلہ فارم جمع کروا سکتے ہیں۔
-    </p>
-
-    <div class="notice">
-      <strong>اہم اطلاع:</strong>
-      داخلہ فیس <strong>Rs. 2,500</strong> ہے۔
+  <!-- HOME PAGE -->
+  <section id="home" class="section site-page active-page">
+    <div class="card">
+      <h2 class="ltr-heading">Our Mission</h2>
+      <p class="ltr-text">To provide quality education and a strong academic foundation for students in Kaloi and Tharparker.</p>
     </div>
 
-    <div class="fee">
-      داخلہ فیس: Rs. 2,500
+    <div class="card">
+      <h2 class="ltr-heading">Founder’s Message</h2>
+      <p class="ltr-text">Our mission is to promote education, character, discipline and positive values for the future of our students.</p>
+    </div>
+
+    <div class="card">
+      <h2 class="ltr-heading">Principal’s Message</h2>
+      <p class="ltr-text">We welcome students to a supportive learning environment focused on knowledge, skills and academic progress.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT COLLEGE -->
+
+  <section id="about" class="section site-page">
+    <h2 class="ltr-heading">About College</h2>
+    <div class="card">
+      <p class="ltr-text"><strong>Al Islamia Oriental Degree College Kaloi, Tharparker</strong> is an educational institution serving students in Kaloi and the surrounding area. The college provides educational opportunities in Matric, Intermediate and Arabic programs.</p>
     </div>
   </section>
 
   <!-- PROGRAMS -->
-  <section id="programs" class="card">
+  <section id="programs" class="card site-page">
     <h2>ہمارے پروگرامز</h2>
 
     <div class="programs">
@@ -296,41 +335,22 @@
   </section>
 
   <!-- ADMISSION -->
-  <section id="admission" class="card">
+  <section id="admission" class="card site-page">
     <h2>آن لائن داخلہ فارم</h2>
 
     <form id="admissionForm">
 
       <label>طالب علم کا نام *</label>
-      <input
-        type="text"
-        name="name"
-        required
-        placeholder="طالب علم کا مکمل نام"
-      >
+      <input type="text" name="name" required placeholder="طالب علم کا مکمل نام">
 
       <label>والد کا نام *</label>
-      <input
-        type="text"
-        name="father"
-        required
-        placeholder="والد کا مکمل نام"
-      >
+      <input type="text" name="father" required placeholder="والد کا مکمل نام">
 
       <label>موبائل نمبر *</label>
-      <input
-        type="tel"
-        name="phone"
-        required
-        placeholder="مثال: 0348-0824476"
-      >
+      <input type="tel" name="phone" required placeholder="مثال: 0348-0824476">
 
       <label>شناختی کارڈ نمبر</label>
-      <input
-        type="text"
-        name="cnic"
-        placeholder="اختیاری"
-      >
+      <input type="text" name="cnic" placeholder="اختیاری">
 
       <label>پروگرام منتخب کریں *</label>
       <select name="program" required>
@@ -343,30 +363,16 @@
       </select>
 
       <label>پچھلی تعلیم</label>
-      <input
-        type="text"
-        name="previous"
-        placeholder="مثال: میٹرک، انٹر وغیرہ"
-      >
+      <input type="text" name="previous" placeholder="مثال: میٹرک، انٹر وغیرہ">
 
       <label>تاریخ پیدائش</label>
-      <input
-        type="date"
-        name="dob"
-      >
+      <input type="date" name="dob">
 
       <label>مکمل پتہ *</label>
-      <textarea
-        name="address"
-        required
-        placeholder="اپنا مکمل پتہ لکھیں"
-      ></textarea>
+      <textarea name="address" required placeholder="اپنا مکمل پتہ لکھیں"></textarea>
 
       <label>اضافی معلومات</label>
-      <textarea
-        name="notes"
-        placeholder="اگر کوئی اضافی معلومات دینا چاہتے ہیں"
-      ></textarea>
+      <textarea name="notes" placeholder="اگر کوئی اضافی معلومات دینا چاہتے ہیں"></textarea>
 
       <button type="submit" id="submitBtn">
         داخلہ فارم جمع کریں
@@ -378,7 +384,7 @@
   </section>
 
   <!-- STATUS -->
-  <section id="status" class="card">
+  <section id="status" class="card site-page">
     <h2>اپنے داخلے کا اسٹیٹس چیک کریں</h2>
 
     <p>
@@ -399,28 +405,20 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="card">
+  <section id="notifications" class="section site-page">
+  <div class="container">
+    <h2>Notifications</h2>
+    <div class="card"><p>No new notifications at the moment.</p></div>
+  </div>
+</section>
+
+<section id="contact" class="card site-page">
     <h2>رابطہ</h2>
 
-    <p>
-      <strong>کالج:</strong>
-      Al Islamia Oriental Degree College Kaloi, Tharparker
-    </p>
-
-    <p>
-      <strong>مقام:</strong>
-      Kaloi, Tharparker
-    </p>
-
-    <p>
-      <strong>فون:</strong>
-      0348-0824476
-    </p>
-
-    <p>
-      <strong>داخلہ فیس:</strong>
-      Rs. 2,500
-    </p>
+    <p><strong>کالج:</strong> Al Islamia Oriental Degree College Kaloi, Tharparker</p>
+    <p><strong>مقام:</strong> Kaloi, Tharparker</p>
+    <p><strong>فون:</strong> 0348-0824476</p>
+    <p><strong>داخلہ فیس:</strong> Rs. 2,500</p>
   </section>
 
 </div>
@@ -432,360 +430,253 @@
 
 
 <script>
-
   // Supabase connection
   const db = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
 
-
   // Generate application number
   function generateApplicationNumber() {
-
-    const number =
-      Math.floor(100000 + Math.random() * 900000);
-
+    const number = Math.floor(100000 + Math.random() * 900000);
     return "AIOC-" + number;
   }
 
-
   // Admission form submit
-  document
-    .getElementById("admissionForm")
-    .addEventListener("submit", async function(e) {
+  document.getElementById("admissionForm").addEventListener("submit", async function(e) {
 
-      e.preventDefault();
+    e.preventDefault();
 
-      const submitBtn =
-        document.getElementById("submitBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    const message = document.getElementById("formMessage");
 
-      const message =
-        document.getElementById("formMessage");
-
-
-      submitBtn.disabled = true;
-
-      submitBtn.textContent =
-        "فارم جمع ہو رہا ہے...";
-
-      message.innerHTML = "";
-
-
-      try {
-
-        const formData =
-          new FormData(this);
-
-
-        const application = {
-
-          app_no:
-            generateApplicationNumber(),
-
-          name:
-            formData.get("name"),
-
-          father:
-            formData.get("father"),
-
-          phone:
-            formData.get("phone"),
-
-          cnic:
-            formData.get("cnic") || null,
-
-          program:
-            formData.get("program"),
-
-          previous:
-            formData.get("previous") || null,
-
-          address:
-            formData.get("address"),
-
-          dob:
-            formData.get("dob") || null,
-
-          notes:
-            formData.get("notes") || null,
-
-          status:
-            "Submitted"
-        };
-
-
-        const { error } =
-          await db
-            .from("applications")
-            .insert([application]);
-
-
-        if (error) {
-          throw error;
-        }
-
-
-        message.innerHTML = `
-
-          <div class="success">
-
-            <div class="application-number">
-
-              آپ کا Application Number<br>
-
-              ${application.app_no}
-
-            </div>
-
-
-            <p>
-              آپ کا داخلہ فارم کامیابی سے جمع ہو گیا ہے۔
-            </p>
-
-
-            <p>
-              براہ کرم اپنا Application Number محفوظ کر لیں۔
-              اسی نمبر سے آپ بعد میں داخلے کا اسٹیٹس چیک کر سکتے ہیں۔
-            </p>
-
-          </div>
-
-        `;
-
-
-        this.reset();
-
-
-      } catch (error) {
-
-        console.error(error);
-
-
-        message.innerHTML = `
-
-          <p class="error">
-
-            معذرت، فارم جمع نہیں ہو سکا۔
-            براہ کرم دوبارہ کوشش کریں۔
-
-          </p>
-
-        `;
-
-      } finally {
-
-        submitBtn.disabled = false;
-
-        submitBtn.textContent =
-          "داخلہ فارم جمع کریں";
-
-      }
-
-    });
-
-
-
-  // Check application status
-  async function checkStatus() {
-
-    const input =
-      document.getElementById("trackingNumber");
-
-    const result =
-      document.getElementById("statusResult");
-
-
-    const appNo =
-      input.value.trim();
-
-
-    if (!appNo) {
-
-      result.style.display = "block";
-
-      result.innerHTML = `
-
-        <p class="error">
-
-          براہ کرم Application Number درج کریں۔
-
-        </p>
-
-      `;
-
-      return;
-    }
-
-
-    result.style.display = "block";
-
-    result.innerHTML =
-      "اسٹیٹس چیک ہو رہا ہے...";
-
+    submitBtn.disabled = true;
+    submitBtn.textContent = "فارم جمع ہو رہا ہے...";
+    message.innerHTML = "";
 
     try {
 
-      const { data, error } =
-        await db.rpc(
-          "get_application_status",
-          {
-            p_app_no: appNo
-          }
-        );
+      const formData = new FormData(this);
 
+      const application = {
+        app_no: generateApplicationNumber(),
+        name: formData.get("name"),
+        father: formData.get("father"),
+        phone: formData.get("phone"),
+        cnic: formData.get("cnic") || null,
+        program: formData.get("program"),
+        previous: formData.get("previous") || null,
+        address: formData.get("address"),
+        dob: formData.get("dob") || null,
+        notes: formData.get("notes") || null,
+        status: "Submitted"
+      };
+
+      const { error } = await db
+        .from("applications")
+        .insert([application]);
 
       if (error) {
         throw error;
       }
 
+      message.innerHTML = `
+        <div class="success">
+          <div class="application-number">
+            آپ کا Application Number<br>
+            ${application.app_no}
+          </div>
 
-      if (!data || data.length === 0) {
-
-        result.innerHTML = `
-
-          <p class="error">
-
-            یہ Application Number نہیں ملا۔
-
+          <p>
+            آپ کا داخلہ فارم کامیابی سے جمع ہو گیا ہے۔
           </p>
 
-        `;
-
-        return;
-      }
-
-
-      const application =
-        data[0];
-
-
-      let statusText =
-        application.status;
-
-
-      if (application.status === "Submitted") {
-
-        statusText =
-          "فارم جمع ہو گیا ہے — زیرِ غور";
-
-      }
-
-
-      if (application.status === "Approved") {
-
-        statusText =
-          "داخلہ منظور ہو گیا ہے";
-
-      }
-
-
-      if (application.status === "Rejected") {
-
-        statusText =
-          "داخلہ مسترد کر دیا گیا ہے";
-
-      }
-
-
-      result.innerHTML = `
-
-        <h3>داخلہ کی معلومات</h3>
-
-
-        <p>
-
-          <strong>نام:</strong>
-
-          ${escapeHtml(application.name)}
-
-        </p>
-
-
-        <p>
-
-          <strong>پروگرام:</strong>
-
-          ${escapeHtml(application.program)}
-
-        </p>
-
-
-        <p>
-
-          <strong>اسٹیٹس:</strong>
-
-          ${escapeHtml(statusText)}
-
-        </p>
-
+          <p>
+            براہ کرم اپنا Application Number محفوظ کر لیں۔
+            اسی نمبر سے آپ بعد میں داخلے کا اسٹیٹس چیک کر سکتے ہیں۔
+          </p>
+        </div>
       `;
 
+      this.reset();
 
     } catch (error) {
 
       console.error(error);
 
-
-      result.innerHTML = `
-
+      message.innerHTML = `
         <p class="error">
-
-          اسٹیٹس چیک نہیں ہو سکا۔
+          معذرت، فارم جمع نہیں ہو سکا۔
           براہ کرم دوبارہ کوشش کریں۔
-
         </p>
-
       `;
 
+    } finally {
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = "داخلہ فارم جمع کریں";
+
+    }
+  });
+
+
+  // Check application status
+  async function checkStatus() {
+
+    const input = document.getElementById("trackingNumber");
+    const result = document.getElementById("statusResult");
+
+    const appNo = input.value.trim();
+
+    if (!appNo) {
+      result.style.display = "block";
+      result.innerHTML = `
+        <p class="error">
+          براہ کرم Application Number درج کریں۔
+        </p>
+      `;
+      return;
     }
 
-  }
+    result.style.display = "block";
+    result.innerHTML = "اسٹیٹس چیک ہو رہا ہے...";
 
+    try {
+
+      const { data, error } = await db.rpc(
+        "get_application_status",
+        {
+          p_app_no: appNo
+        }
+      );
+
+      if (error) {
+        throw error;
+      }
+
+      if (!data || data.length === 0) {
+
+        result.innerHTML = `
+          <p class="error">
+            یہ Application Number نہیں ملا۔
+          </p>
+        `;
+
+        return;
+      }
+
+      const application = data[0];
+
+      let statusText = application.status;
+
+      if (application.status === "Submitted") {
+        statusText = "فارم جمع ہو گیا ہے — زیرِ غور";
+      }
+
+      if (application.status === "Approved") {
+        statusText = "داخلہ منظور ہو گیا ہے";
+      }
+
+      if (application.status === "Rejected") {
+        statusText = "داخلہ مسترد کر دیا گیا ہے";
+      }
+
+      result.innerHTML = `
+        <h3>داخلہ کی معلومات</h3>
+
+        <p>
+          <strong>نام:</strong>
+          ${escapeHtml(application.name)}
+        </p>
+
+        <p>
+          <strong>پروگرام:</strong>
+          ${escapeHtml(application.program)}
+        </p>
+
+        <p>
+          <strong>اسٹیٹس:</strong>
+          ${escapeHtml(statusText)}
+        </p>
+      `;
+
+    } catch (error) {
+
+      console.error(error);
+
+      result.innerHTML = `
+        <p class="error">
+          اسٹیٹس چیک نہیں ہو سکا۔ براہ کرم دوبارہ کوشش کریں۔
+        </p>
+      `;
+    }
+  }
 
 
   // Basic HTML escaping
   function escapeHtml(value) {
 
-    if (
-      value === null ||
-      value === undefined
-    ) {
-
+    if (value === null || value === undefined) {
       return "";
-
     }
 
-
     return String(value)
-
-      .replace(
-        /&/g,
-        "&amp;"
-      )
-
-      .replace(
-        /</g,
-        "&lt;"
-      )
-
-      .replace(
-        />/g,
-        "&gt;"
-      )
-
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-
-      .replace(
-        /'/g,
-        "&#039;"
-      );
-
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   }
+</script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const pages = document.querySelectorAll(".site-page");
+    if (!menuToggle || !navLinks) return;
+
+    function toggleMenu(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      const open = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      menuToggle.textContent = open ? "✕" : "☰";
+    }
+
+    function closeMenu() {
+      navLinks.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open menu");
+      menuToggle.textContent = "☰";
+    }
+
+    function showPage(id) {
+      let target = id === "home" ? "home" : id;
+      pages.forEach(function(page) {
+        page.classList.toggle("active-page", page.id === target);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      closeMenu();
+    }
+
+    menuToggle.addEventListener("click", toggleMenu);
+
+    navLinks.querySelectorAll("a").forEach(function(link) {
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        const id = (link.getAttribute("href") || "#home").replace("#", "");
+        showPage(id || "home");
+        history.replaceState(null, "", "#" + (id || "home"));
+      });
+    });
+
+    // If a menu link is opened directly with a hash, show that page.
+    const initialId = window.location.hash.replace("#", "");
+    if (initialId && document.getElementById(initialId) && document.getElementById(initialId).classList.contains("site-page")) {
+      showPage(initialId);
+    }
+  });
 </script>
 
 </body>
