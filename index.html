@@ -264,10 +264,11 @@
         width: 96%;
       }
     }
-  </style>
+  .content-loading #missionText,.content-loading #founderMessageText,.content-loading #principalMessageText,.content-loading #publicNotifications{visibility:hidden;}
+</style>
 </head>
 
-<body>
+<body class="content-loading">
 
 <header>
   <!-- بعد میں یہاں آپ کالج کا اصل لوگو بھی لگا سکتے ہیں -->
@@ -626,18 +627,21 @@
       }
       const n = await db.from("notifications").select("id,title,message,created_at").eq("is_published", true).order("created_at", { ascending: false });
       const box = document.getElementById("publicNotifications");
-      if (!box) return;
-      if (n.error || !n.data || n.data.length === 0) {
-        box.innerHTML = '<div class="card"><p>No new notifications at the moment.</p></div>';
-        return;
-      }
-      box.innerHTML = n.data.map(item => `
+      if (box) {
+        if (n.error || !n.data || n.data.length === 0) {
+          box.innerHTML = '<div class="card"><p>No new notifications at the moment.</p></div>';
+        } else {
+          box.innerHTML = n.data.map(item => `
         <div class="card">
           <h3 class="ltr-heading">${escapeHtml(item.title)}</h3>
           <p class="ltr-text">${escapeHtml(item.message)}</p>
         </div>`).join("");
+        }
+      }
     } catch (e) {
       console.error(e);
+    } finally {
+      document.body.classList.remove("content-loading");
     }
   }
 
