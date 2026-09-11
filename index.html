@@ -298,17 +298,17 @@
   <section id="home" class="section site-page active-page">
     <div class="card">
       <h2 class="ltr-heading">Our Mission</h2>
-      <p class="ltr-text">To provide quality education and a strong academic foundation for students in Kaloi and Tharparker.</p>
+      <p id="missionText" class="ltr-text">To provide quality education and a strong academic foundation for students in Kaloi and Tharparker.</p>
     </div>
 
     <div class="card">
       <h2 class="ltr-heading">Founder’s Message</h2>
-      <p class="ltr-text">Our mission is to promote education, character, discipline and positive values for the future of our students.</p>
+      <p id="founderMessageText" class="ltr-text">Our mission is to promote education, character, discipline and positive values for the future of our students.</p>
     </div>
 
     <div class="card">
       <h2 class="ltr-heading">Principal’s Message</h2>
-      <p class="ltr-text">We welcome students to a supportive learning environment focused on knowledge, skills and academic progress.</p>
+      <p id="principalMessageText" class="ltr-text">We welcome students to a supportive learning environment focused on knowledge, skills and academic progress.</p>
     </div>
   </section>
 
@@ -408,7 +408,7 @@
   <section id="notifications" class="section site-page">
   <div class="container">
     <h2>Notifications</h2>
-    <div class="card"><p>No new notifications at the moment.</p></div>
+    <div id="publicNotifications"><div class="card"><p>Loading notifications...</p></div></div>
   </div>
 </section>
 
@@ -612,6 +612,36 @@
     }
   }
 
+
+
+  // Load admin-controlled website content and notifications
+  async function loadSiteContent() {
+    try {
+      const { data, error } = await db.from("site_content").select("key,content");
+      if (!error && data) {
+        const map = Object.fromEntries(data.map(x => [x.key, x.content]));
+        if (map.mission) document.getElementById("missionText").textContent = map.mission;
+        if (map.founder_message) document.getElementById("founderMessageText").textContent = map.founder_message;
+        if (map.principal_message) document.getElementById("principalMessageText").textContent = map.principal_message;
+      }
+      const n = await db.from("notifications").select("id,title,message,created_at").eq("is_published", true).order("created_at", { ascending: false });
+      const box = document.getElementById("publicNotifications");
+      if (!box) return;
+      if (n.error || !n.data || n.data.length === 0) {
+        box.innerHTML = '<div class="card"><p>No new notifications at the moment.</p></div>';
+        return;
+      }
+      box.innerHTML = n.data.map(item => `
+        <div class="card">
+          <h3 class="ltr-heading">${escapeHtml(item.title)}</h3>
+          <p class="ltr-text">${escapeHtml(item.message)}</p>
+        </div>`).join("");
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  loadSiteContent();
 
   // Basic HTML escaping
   function escapeHtml(value) {
