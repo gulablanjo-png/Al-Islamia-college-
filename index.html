@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Al Islamia Oriental Degree College Kaloi</title>
-<meta name="description" content="Al Islamia Oriental Degree College Kaloi, Tharparker. Online admission for Matric, Intermediate, Molvi Arabi, Molvi Alam Arabi and Molvi Fazil Arabi.">
-<meta name="keywords" content="Al Islamia Oriental Degree College Kaloi, Al Islamia College Kaloi, College Kaloi Tharparker, Online Admission Kaloi">
-<link rel="canonical" href="https://alislamiaorentalcollegekaloi.netlify.app/">
+
+  <title>Al Islamia Oriental Degree College Kaloi | Online Admission</title>
+
+  <meta name="description" content="Al Islamia Oriental Degree College Kaloi, Tharparker — Online admissions for Matric, Inter, Molvi Arabic, Molvi Alam Arabic and Molvi Fazil Arabic.">
+
+  <meta name="keywords" content="Al Islamia Oriental Degree College Kaloi, Al Islamia College Kaloi, Degree College Kaloi, College in Kaloi Tharparker, Online Admission Kaloi, Tharparker College">
+
+  <link rel="canonical" href="https://alislamiaorentalcollegekaloi.netlify.app/">
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
 
@@ -244,6 +249,7 @@
 
   <h1>Al Islamia Oriental Degree College</h1>
   <h1>Kaloi, Tharparker</h1>
+
   <p>آن لائن داخلہ پورٹل</p>
   <p>📞 0348-0824476</p>
 </header>
@@ -296,16 +302,35 @@
     <form id="admissionForm">
 
       <label>طالب علم کا نام *</label>
-      <input type="text" name="name" required placeholder="طالب علم کا مکمل نام">
+      <input
+        type="text"
+        name="name"
+        required
+        placeholder="طالب علم کا مکمل نام"
+      >
 
       <label>والد کا نام *</label>
-      <input type="text" name="father" required placeholder="والد کا مکمل نام">
+      <input
+        type="text"
+        name="father"
+        required
+        placeholder="والد کا مکمل نام"
+      >
 
       <label>موبائل نمبر *</label>
-      <input type="tel" name="phone" required placeholder="مثال: 0348-0824476">
+      <input
+        type="tel"
+        name="phone"
+        required
+        placeholder="مثال: 0348-0824476"
+      >
 
       <label>شناختی کارڈ نمبر</label>
-      <input type="text" name="cnic" placeholder="اختیاری">
+      <input
+        type="text"
+        name="cnic"
+        placeholder="اختیاری"
+      >
 
       <label>پروگرام منتخب کریں *</label>
       <select name="program" required>
@@ -318,16 +343,30 @@
       </select>
 
       <label>پچھلی تعلیم</label>
-      <input type="text" name="previous" placeholder="مثال: میٹرک، انٹر وغیرہ">
+      <input
+        type="text"
+        name="previous"
+        placeholder="مثال: میٹرک، انٹر وغیرہ"
+      >
 
       <label>تاریخ پیدائش</label>
-      <input type="date" name="dob">
+      <input
+        type="date"
+        name="dob"
+      >
 
       <label>مکمل پتہ *</label>
-      <textarea name="address" required placeholder="اپنا مکمل پتہ لکھیں"></textarea>
+      <textarea
+        name="address"
+        required
+        placeholder="اپنا مکمل پتہ لکھیں"
+      ></textarea>
 
       <label>اضافی معلومات</label>
-      <textarea name="notes" placeholder="اگر کوئی اضافی معلومات دینا چاہتے ہیں"></textarea>
+      <textarea
+        name="notes"
+        placeholder="اگر کوئی اضافی معلومات دینا چاہتے ہیں"
+      ></textarea>
 
       <button type="submit" id="submitBtn">
         داخلہ فارم جمع کریں
@@ -363,10 +402,25 @@
   <section id="contact" class="card">
     <h2>رابطہ</h2>
 
-    <p><strong>کالج:</strong> Al Islamia Oriental Degree College Kaloi, Tharparker</p>
-    <p><strong>مقام:</strong> Kaloi, Tharparker</p>
-    <p><strong>فون:</strong> 0348-0824476</p>
-    <p><strong>داخلہ فیس:</strong> Rs. 2,500</p>
+    <p>
+      <strong>کالج:</strong>
+      Al Islamia Oriental Degree College Kaloi, Tharparker
+    </p>
+
+    <p>
+      <strong>مقام:</strong>
+      Kaloi, Tharparker
+    </p>
+
+    <p>
+      <strong>فون:</strong>
+      0348-0824476
+    </p>
+
+    <p>
+      <strong>داخلہ فیس:</strong>
+      Rs. 2,500
+    </p>
   </section>
 
 </div>
@@ -378,203 +432,360 @@
 
 
 <script>
+
   // Supabase connection
   const db = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
 
+
   // Generate application number
   function generateApplicationNumber() {
-    const number = Math.floor(100000 + Math.random() * 900000);
+
+    const number =
+      Math.floor(100000 + Math.random() * 900000);
+
     return "AIOC-" + number;
   }
 
+
   // Admission form submit
-  document.getElementById("admissionForm").addEventListener("submit", async function(e) {
+  document
+    .getElementById("admissionForm")
+    .addEventListener("submit", async function(e) {
 
-    e.preventDefault();
+      e.preventDefault();
 
-    const submitBtn = document.getElementById("submitBtn");
-    const message = document.getElementById("formMessage");
+      const submitBtn =
+        document.getElementById("submitBtn");
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = "فارم جمع ہو رہا ہے...";
-    message.innerHTML = "";
+      const message =
+        document.getElementById("formMessage");
 
-    try {
 
-      const formData = new FormData(this);
+      submitBtn.disabled = true;
 
-      const application = {
-        app_no: generateApplicationNumber(),
-        name: formData.get("name"),
-        father: formData.get("father"),
-        phone: formData.get("phone"),
-        cnic: formData.get("cnic") || null,
-        program: formData.get("program"),
-        previous: formData.get("previous") || null,
-        address: formData.get("address"),
-        dob: formData.get("dob") || null,
-        notes: formData.get("notes") || null,
-        status: "Submitted"
-      };
+      submitBtn.textContent =
+        "فارم جمع ہو رہا ہے...";
 
-      const { error } = await db
-        .from("applications")
-        .insert([application]);
+      message.innerHTML = "";
 
-      if (error) {
-        throw error;
-      }
 
-      message.innerHTML = `
-        <div class="success">
-          <div class="application-number">
-            آپ کا Application Number<br>
-            ${application.app_no}
+      try {
+
+        const formData =
+          new FormData(this);
+
+
+        const application = {
+
+          app_no:
+            generateApplicationNumber(),
+
+          name:
+            formData.get("name"),
+
+          father:
+            formData.get("father"),
+
+          phone:
+            formData.get("phone"),
+
+          cnic:
+            formData.get("cnic") || null,
+
+          program:
+            formData.get("program"),
+
+          previous:
+            formData.get("previous") || null,
+
+          address:
+            formData.get("address"),
+
+          dob:
+            formData.get("dob") || null,
+
+          notes:
+            formData.get("notes") || null,
+
+          status:
+            "Submitted"
+        };
+
+
+        const { error } =
+          await db
+            .from("applications")
+            .insert([application]);
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        message.innerHTML = `
+
+          <div class="success">
+
+            <div class="application-number">
+
+              آپ کا Application Number<br>
+
+              ${application.app_no}
+
+            </div>
+
+
+            <p>
+              آپ کا داخلہ فارم کامیابی سے جمع ہو گیا ہے۔
+            </p>
+
+
+            <p>
+              براہ کرم اپنا Application Number محفوظ کر لیں۔
+              اسی نمبر سے آپ بعد میں داخلے کا اسٹیٹس چیک کر سکتے ہیں۔
+            </p>
+
           </div>
 
-          <p>
-            آپ کا داخلہ فارم کامیابی سے جمع ہو گیا ہے۔
+        `;
+
+
+        this.reset();
+
+
+      } catch (error) {
+
+        console.error(error);
+
+
+        message.innerHTML = `
+
+          <p class="error">
+
+            معذرت، فارم جمع نہیں ہو سکا۔
+            براہ کرم دوبارہ کوشش کریں۔
+
           </p>
 
-          <p>
-            براہ کرم اپنا Application Number محفوظ کر لیں۔
-            اسی نمبر سے آپ بعد میں داخلے کا اسٹیٹس چیک کر سکتے ہیں۔
-          </p>
-        </div>
-      `;
+        `;
 
-      this.reset();
+      } finally {
 
-    } catch (error) {
+        submitBtn.disabled = false;
 
-      console.error(error);
+        submitBtn.textContent =
+          "داخلہ فارم جمع کریں";
 
-      message.innerHTML = `
-        <p class="error">
-          معذرت، فارم جمع نہیں ہو سکا۔
-          براہ کرم دوبارہ کوشش کریں۔
-        </p>
-      `;
+      }
 
-    } finally {
+    });
 
-      submitBtn.disabled = false;
-      submitBtn.textContent = "داخلہ فارم جمع کریں";
-
-    }
-  });
 
 
   // Check application status
   async function checkStatus() {
 
-    const input = document.getElementById("trackingNumber");
-    const result = document.getElementById("statusResult");
+    const input =
+      document.getElementById("trackingNumber");
 
-    const appNo = input.value.trim();
+    const result =
+      document.getElementById("statusResult");
+
+
+    const appNo =
+      input.value.trim();
+
 
     if (!appNo) {
+
       result.style.display = "block";
+
       result.innerHTML = `
+
         <p class="error">
+
           براہ کرم Application Number درج کریں۔
+
         </p>
+
       `;
+
       return;
     }
 
+
     result.style.display = "block";
-    result.innerHTML = "اسٹیٹس چیک ہو رہا ہے...";
+
+    result.innerHTML =
+      "اسٹیٹس چیک ہو رہا ہے...";
+
 
     try {
 
-      const { data, error } = await db.rpc(
-        "get_application_status",
-        {
-          p_app_no: appNo
-        }
-      );
+      const { data, error } =
+        await db.rpc(
+          "get_application_status",
+          {
+            p_app_no: appNo
+          }
+        );
+
 
       if (error) {
         throw error;
       }
 
+
       if (!data || data.length === 0) {
 
         result.innerHTML = `
+
           <p class="error">
+
             یہ Application Number نہیں ملا۔
+
           </p>
+
         `;
 
         return;
       }
 
-      const application = data[0];
 
-      let statusText = application.status;
+      const application =
+        data[0];
+
+
+      let statusText =
+        application.status;
+
 
       if (application.status === "Submitted") {
-        statusText = "فارم جمع ہو گیا ہے — زیرِ غور";
+
+        statusText =
+          "فارم جمع ہو گیا ہے — زیرِ غور";
+
       }
+
 
       if (application.status === "Approved") {
-        statusText = "داخلہ منظور ہو گیا ہے";
+
+        statusText =
+          "داخلہ منظور ہو گیا ہے";
+
       }
+
 
       if (application.status === "Rejected") {
-        statusText = "داخلہ مسترد کر دیا گیا ہے";
+
+        statusText =
+          "داخلہ مسترد کر دیا گیا ہے";
+
       }
 
+
       result.innerHTML = `
+
         <h3>داخلہ کی معلومات</h3>
 
+
         <p>
+
           <strong>نام:</strong>
+
           ${escapeHtml(application.name)}
+
         </p>
 
+
         <p>
+
           <strong>پروگرام:</strong>
+
           ${escapeHtml(application.program)}
+
         </p>
 
+
         <p>
+
           <strong>اسٹیٹس:</strong>
+
           ${escapeHtml(statusText)}
+
         </p>
+
       `;
+
 
     } catch (error) {
 
       console.error(error);
 
+
       result.innerHTML = `
+
         <p class="error">
-          اسٹیٹس چیک نہیں ہو سکا۔ براہ کرم دوبارہ کوشش کریں۔
+
+          اسٹیٹس چیک نہیں ہو سکا۔
+          براہ کرم دوبارہ کوشش کریں۔
+
         </p>
+
       `;
+
     }
+
   }
+
 
 
   // Basic HTML escaping
   function escapeHtml(value) {
 
-    if (value === null || value === undefined) {
+    if (
+      value === null ||
+      value === undefined
+    ) {
+
       return "";
+
     }
 
+
     return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
   }
+
 </script>
 
 </body>
